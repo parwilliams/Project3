@@ -1,5 +1,8 @@
 import static org.junit.Assert.*;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import org.junit.Test;
 
 public class DateTimeOneTest {
@@ -16,7 +19,14 @@ public class DateTimeOneTest {
 
 	@Test
 	public void testSleepForFiveSec() {
-		fail("Not yet implemented");
+		DateTimeOne date = new DateTimeOne();
+		int milliseconds = (int)System.currentTimeMillis();
+		
+		date.sleepForFiveSec();
+		int expected = milliseconds + 5000;
+		int actual = (int)System.currentTimeMillis();//Not perfect timing
+		
+		assertEquals(expected, actual);
 	}
 	
 	@Test
