@@ -64,9 +64,9 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 		*/
 		
 		System.out.println("Time on Server: " + hourFormat.format(calendar.getTime()));
-		timeZoneToString(gmtCalendar, gmt);
-		timeZoneToString(bstCalendar, bst);
-		timeZoneToString(cdtCalendar, cdt);
+		otherCityToString(gmtCalendar, gmt, "");
+		otherCityToString(bstCalendar, bst, " (90E)");
+		otherCityToString(cdtCalendar, cdt, " (90W)");
 		
 		/*System.out.println(timeZoneToString("Time on Server", hourFormat.format(calendar.getTime())));
 		System.out.println(timeZoneToString("GMT", hourFormat.format(gmtCalendar.getTime())));
@@ -93,8 +93,8 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 	}
 	
 	
-	private void timeZoneToString(Calendar calendar, TimeZone timezone) {
-		System.out.print(timezone.getID() + ": ");
+	private void otherCityToString(Calendar calendar, TimeZone timezone, String degrees) {
+		System.out.print(timezone.getID() + degrees + ": ");
 		System.out.println(calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE));
 	}
 	
