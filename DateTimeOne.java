@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 
+import javafx.util.converter.LocalDateStringConverter;
+
 public class DateTimeOne extends MesoDateTimeOneAbstract {
 
 	private static final int CST_CONVERSION = -5 * 60 * 60 * 1000;
@@ -25,7 +27,11 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 	private GregorianCalendar gmtCalendar;
 	private GregorianCalendar bstCalendar;
 	private GregorianCalendar cstCalendar;
-	private LocalDateTime localDateTime;
+	private LocalDateTime secondsTime;
+	private LocalDate astDate;
+	private LocalDate zstDate;
+	private	LocalTime astTime;
+	private LocalTime zstTime;
 	
 	public DateTimeOne() {
 		calendar = new GregorianCalendar();
@@ -42,8 +48,8 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 	}
 
 	public int getValueOfSecond() {
-		localDateTime = LocalDateTime.now();
-		valueOfSecondNow = localDateTime.getSecond();
+		secondsTime = LocalDateTime.now();
+		valueOfSecondNow = secondsTime.getSecond();
 		System.out.println("The value of Second now: " + valueOfSecondNow);
 		return valueOfSecondNow;
 	}
@@ -72,7 +78,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 		System.out.println(cdtCalendar.get(Calendar.HOUR_OF_DAY));
 		*/
 		
-		System.out.println("Time on Server: " + hourFormat.format(calendar.getTime()));
+		System.out.println("Time on Server: " + hourMinuteFormat.format(calendar.getTime()));
 		otherCityToString(gmtCalendar, gmt, "");
 		otherCityToString(bstCalendar, bst, " (90E)");
 		otherCityToString(cstCalendar, cst, " (90W)");
@@ -113,6 +119,31 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 	
 	public void timeZoneHashMap() {
 		// TODO:Implement Method
+		astDate = LocalDate.of(2020, 10, 01);
+		astTime = LocalTime.of(19, 59);
+		zstDate = LocalDate.of(2018, 11, 05);
+		zstTime = LocalTime.of(19, 59);
+		
+		times.put("AST", localDateAndTimeToString(astDate, astTime, "AST"));
+		times.put("ZST", localDateAndTimeToString(zstDate, zstTime, "ZST"));
+		
+		System.out.println("Print Style 1:");
+		System.out.println(times.get("AST"));
+		System.out.println(times.get("BST"));
+		System.out.println(times.get("CST"));
+		System.out.println(times.get("GMT"));
+		System.out.println(times.get("ZST"));
+		
+		HashMap<String, String> times2 = new HashMap<String, String>();
+		
+		
+		
+	}
+	
+	private String localDateAndTimeToString(LocalDate date, LocalTime time, String id) {
+		String str = id + ": " + date.getMonthValue() + "/" + date.getDayOfMonth() + "/" + date.getYear() + " " +
+						time.getHour() + ":" + time.getMinute();
+		return str;
 	}
 	
 	
