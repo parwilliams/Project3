@@ -14,7 +14,11 @@ public class DateTimeOneTest {
 	
 	@Test
 	public void testGetValueOfSecond() {
-		fail("Not yet implemented");
+		DateTimeOne date = new DateTimeOne();
+		int milliseconds = (int) System.currentTimeMillis();
+		int expected = milliseconds / 1000;
+		int actual = date.getValueOfSecond();
+		assertEquals(expected, actual);
 	}
 
 	@Test
