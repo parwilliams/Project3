@@ -1,4 +1,7 @@
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -10,9 +13,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 	private static final int CST_CONVERSION = -5 * 60 * 60 * 1000;
 	private static final int BST_CONVERSION = 6 * 60 * 60 * 1000;
 	private Calendar calendar;
-	private int milliseconds;
-	private static final int MILLI_CONVERSION = 1000;
-	private int seconds;
+	private int valueOfSecondNow;
 	private SimpleDateFormat dateFormat;
 	private SimpleDateFormat hourFormat;
 	private SimpleDateFormat minuteFormat;
@@ -24,6 +25,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 	private GregorianCalendar gmtCalendar;
 	private GregorianCalendar bstCalendar;
 	private GregorianCalendar cstCalendar;
+	private LocalDateTime localDateTime;
 	
 	public DateTimeOne() {
 		calendar = new GregorianCalendar();
@@ -40,9 +42,10 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 	}
 
 	public int getValueOfSecond() {
-		milliseconds = (int) System.currentTimeMillis();
-		seconds = milliseconds / MILLI_CONVERSION;
-		return seconds;
+		localDateTime = LocalDateTime.now();
+		valueOfSecondNow = localDateTime.getSecond();
+		System.out.println("The value of Second now: " + valueOfSecondNow);
+		return valueOfSecondNow;
 	}
 
 	public void sleepForFiveSec() {
@@ -55,7 +58,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 
 	public void dateTimeNow() {
 		// TODO: Print Present Date and Time
-		System.out.println("Current Date/Time: " + dateFormat.format(calendar.getTime()));
+		System.out.println("Current Date/Time: " + dateFormat.format(calendar.getTime())); //could need to only have integer for hour, depending
 	}
 
 	public void dateTimeOfOtherCity() { //Need Help
