@@ -9,14 +9,14 @@ import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 import java.util.TreeMap;
 import java.util.Map.Entry;
-
+import java.util.Arrays;
 import javafx.util.converter.LocalDateStringConverter;
 import java.time.format.DateTimeFormatter;
 
 public class DateTimeOne extends MesoDateTimeOneAbstract {
 
 	private static final int CST_CONVERSION = -5 * 60 * 60 * 1000;
-	private static final int BST_CONVERSION = 6 * 60 * 60 * 1000;  //Might need to be 5
+	private static final int BST_CONVERSION = 5 * 60 * 60 * 1000;  //Might need to be 6
 	private Calendar calendar;
 	private int valueOfSecondNow;
 	private SimpleDateFormat dateFormat;
@@ -184,7 +184,12 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 		sortHashMapPrintKey(times2);
 		
 		//Style 5 (Sort array by date, future  to past)
+		Arrays.sort(dateTimes);
 		
+		System.out.println("Print Syle 5: Final Sorted Array:");
+		for(int i = 4; i > -1; i--) { //May need to truely sort array in reverse order for Zylabs
+			System.out.println(dateTimes[i]);
+		}
 		
 	}
 	
