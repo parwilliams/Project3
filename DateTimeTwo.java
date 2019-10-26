@@ -1,12 +1,28 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class DateTimeTwo extends MesoDateTimeOneAbstract {
-
+	private static final int EIGHTEENTH_DAY_OF_MONTH = 18;
+	private static final int TENTH_DAY_OF_MONTH = 10;
+	private LocalDateTime currentDate;
+	private Calendar calendar;
+	
 	public DateTimeTwo() {
-		   
+		currentDate = LocalDateTime.now();
+		calendar = new GregorianCalendar();
 	}
 
 	public void daysOfCurrentMonth() {
 		// TODO:Implement Method
+		int month = currentDate.getMonthValue();
+		int year = currentDate.getYear();
+		LocalDate tenthDay = LocalDate.of(year, month, TENTH_DAY_OF_MONTH);
+		LocalDate eighteenthDay = LocalDate.of(year, month, EIGHTEENTH_DAY_OF_MONTH);
+		
+		System.out.println("The tenth day of this month is " + tenthDay.getDayOfWeek() + 
+				" and eighteenth is " + eighteenthDay.getDayOfWeek());
 	}
 	
 	public void daysOfAnyMonth(int month, int year) {
