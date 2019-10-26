@@ -13,7 +13,7 @@ public class DateTimeTwo extends MesoDateTimeOneAbstract {
 	private static final int EIGHTEENTH_DAY_OF_MONTH = 18;
 	private LocalDateTime currentDate;
 	private Calendar calendar;
-	private HashMap fileDates = new HashMap<LocalDate, Integer>();
+	private HashMap<LocalDate, Integer> fileDates = new HashMap<LocalDate, Integer>();
 	
 	public DateTimeTwo() {
 		currentDate = LocalDateTime.now();
@@ -45,12 +45,16 @@ public class DateTimeTwo extends MesoDateTimeOneAbstract {
 			BufferedReader br = new BufferedReader(new FileReader("Dates.txt"));
 			String fileString;
 			boolean isLeapYear;
+			int hashmapIndex = 1;
 			while((fileString = br.readLine()) != null) {
 				int month = Integer.parseInt(fileString.substring(0, 2));
 				int day = Integer.parseInt(fileString.substring(3, 5));
 				int year = Integer.parseInt(fileString.substring(6, 10));
 				LocalDate date = LocalDate.of(year, month, day);
 				LocalDate now = LocalDate.now();
+				fileDates.put(date, hashmapIndex);
+				hashmapIndex++;
+				
 				isLeapYear = date.isLeapYear();
 				if(isLeapYear == true) {
 					System.out.print(year + " is a leap year, and Difference: ");
@@ -58,10 +62,6 @@ public class DateTimeTwo extends MesoDateTimeOneAbstract {
 				else
 					System.out.print(year + " is not a leap year, and Difference: ");
 				findDifferenceInTime(date, now);
-				//int yearsDifference = findYearsBetweenDates(date, now);
-				//int monthsDifference = findMonthsBetweenDates(date, now, yearsDifference);
-				//int daysDifference = findDaysBetweenDates(date, now, yearsDifference, monthsDifference);
-				
 			}
 		}
 		catch(Exception e){
