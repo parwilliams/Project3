@@ -7,13 +7,13 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.SimpleTimeZone;
 import java.util.TimeZone;
-
 import javafx.util.converter.LocalDateStringConverter;
+import java.time.format.DateTimeFormatter;
 
 public class DateTimeOne extends MesoDateTimeOneAbstract {
 
 	private static final int CST_CONVERSION = -5 * 60 * 60 * 1000;
-	private static final int BST_CONVERSION = 6 * 60 * 60 * 1000;
+	private static final int BST_CONVERSION = 6 * 60 * 60 * 1000;  //Might need to be 5
 	private Calendar calendar;
 	private int valueOfSecondNow;
 	private SimpleDateFormat dateFormat;
@@ -134,14 +134,36 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 		System.out.println(times.get("GMT"));
 		System.out.println(times.get("ZST"));
 		
+		//Prepare for step 2
 		HashMap<String, String> times2 = new HashMap<String, String>();
+		LocalDateTime [] dateTimes = new LocalDateTime[5];
+		DateTimeFormatter dateTimesFormat = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+		
+		//Get correct formatting for LocalDateTime
+		String astString = times.get("AST").substring(5).replace('/', '-');
+		String bstString = times.get("BST").substring(5).replace('/', '-');
+		String cstString = times.get("CST").substring(5).replace('/', '-');
+		String gmtString = times.get("GMT").substring(5).replace('/', '-');
+		String zstString = times.get("ZST").substring(5).replace('/', '-');
+		
+		//Create LocalDateTimes for array
+		LocalDateTime astLocal = LocalDateTime.parse(astString, dateTimesFormat);
+		LocalDateTime bstLocal = LocalDateTime.parse(bstString, dateTimesFormat);
+		LocalDateTime cstLocal = LocalDateTime.parse(cstString, dateTimesFormat);
+		LocalDateTime gmtLocal = LocalDateTime.parse(gmtString, dateTimesFormat);
+		LocalDateTime zstLocal = LocalDateTime.parse(zstString, dateTimesFormat);
+		
+		
+		System.out.println(cstLocal);
+		//Add to array
+		//times2.compute((times.get("AST"), )
 		
 		
 		
 	}
 	
 	private String localDateAndTimeToString(LocalDate date, LocalTime time, String id) {
-		String str = id + ": " + date.getMonthValue() + "/" + date.getDayOfMonth() + "/" + date.getYear() + " " +
+		String str = id + ": " + date.getMonthValue() + "/" + findDayOfMonth(date) + "/" + date.getYear() + " " +
 						time.getHour() + ":" + time.getMinute();
 		return str;
 	}
@@ -191,6 +213,17 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 		}
 		else
 			str = Integer.toString(calendar.get(Calendar.MINUTE));
+			return str;
+	}
+	
+	private String findDayOfMonth(LocalDate date) {
+		String str;
+		if(date.getDayOfMonth() < 10) {
+			str = "0" + date.getDayOfMonth();
+			return str;
+		}
+		else
+			str = Integer.toString(date.getDayOfMonth());
 			return str;
 	}
 	
