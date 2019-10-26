@@ -1,7 +1,11 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 
 public class DateTimeTwo extends MesoDateTimeOneAbstract {
 	private static final int TENTH_DAY_OF_MONTH = 10;
@@ -9,6 +13,7 @@ public class DateTimeTwo extends MesoDateTimeOneAbstract {
 	private static final int EIGHTEENTH_DAY_OF_MONTH = 18;
 	private LocalDateTime currentDate;
 	private Calendar calendar;
+	private HashMap fileDates = new HashMap<LocalDate, Integer>();
 	
 	public DateTimeTwo() {
 		currentDate = LocalDateTime.now();
@@ -16,7 +21,6 @@ public class DateTimeTwo extends MesoDateTimeOneAbstract {
 	}
 
 	public void daysOfCurrentMonth() {
-		// TODO:Implement Method
 		int month = currentDate.getMonthValue();
 		int year = currentDate.getYear();
 		LocalDate tenthDay = LocalDate.of(year, month, TENTH_DAY_OF_MONTH);
@@ -27,7 +31,6 @@ public class DateTimeTwo extends MesoDateTimeOneAbstract {
 	}
 	
 	public void daysOfAnyMonth(int month, int year) {
-		// TODO:Implement Method
 		LocalDate fifteenthDate = LocalDate.of(year, month, FIFTEENTH_DAY_OF_MONTH);
 		int lastDay = fifteenthDate.lengthOfMonth();
 		LocalDate lastDate = LocalDate.of(year, month, lastDay);
@@ -38,6 +41,32 @@ public class DateTimeTwo extends MesoDateTimeOneAbstract {
 	
 	public void compareYear() {
 		// TODO:Implement Method
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("Dates.txt"));
+			String fileString;
+			boolean isLeapYear;
+			while((fileString = br.readLine()) != null) {
+				int month = Integer.parseInt(fileString.substring(0, 2));
+				int day = Integer.parseInt(fileString.substring(3, 5));
+				int year = Integer.parseInt(fileString.substring(6, 10));
+				LocalDate date = LocalDate.of(year, month, day);
+				LocalDate now = LocalDate.now();
+				isLeapYear = date.isLeapYear();
+				if(isLeapYear == true) {
+					System.out.print(year + " is a leap year, and Difference: ");
+				}
+				else
+					System.out.print(year + " is not a leap year, and Difference: ");
+				findDifferenceInTime(date, now);
+				//int yearsDifference = findYearsBetweenDates(date, now);
+				//int monthsDifference = findMonthsBetweenDates(date, now, yearsDifference);
+				//int daysDifference = findDaysBetweenDates(date, now, yearsDifference, monthsDifference);
+				
+			}
+		}
+		catch(Exception e){
+			System.out.println("File Does Not Exist");
+		}
 	}
 	
 	public void dateHashMap() {
@@ -84,4 +113,29 @@ public class DateTimeTwo extends MesoDateTimeOneAbstract {
 		
 	}
 	
+	private void findDifferenceInTime(LocalDate fileDate, LocalDate dateToday) {
+		Period periodDifference;
+		if(fileDate.isAfter(dateToday)) {
+			periodDifference = Period.between(dateToday, fileDate); //Shouldn't get here with current file
+		}
+		else
+			periodDifference = Period.between(fileDate, dateToday);
+		
+		System.out.println(periodDifference.getYears() + " years, " + periodDifference.getMonths() + " months, and " + periodDifference.getDays() + " days.");
+	}
+	
+	public int findYearsBetweenDates(LocalDate dateA, LocalDate dateB) {
+		boolean compareDates = dateA.isAfter(dateB);
+		if(compareDates == true) {
+		}
+		return 0;
+	}
+	
+	public int findMonthsBetweenDates(LocalDate dateA, LocalDate dateB, int yearsDifference) {
+		return 0;
+	}
+	
+	public int findDaysBetweenDates(LocalDate dateA, LocalDate dateB, int yearsDifference, int monthsDifference) {
+		return 0;
+	}
 }
