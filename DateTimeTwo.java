@@ -4,8 +4,9 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class DateTimeTwo extends MesoDateTimeOneAbstract {
-	private static final int EIGHTEENTH_DAY_OF_MONTH = 18;
 	private static final int TENTH_DAY_OF_MONTH = 10;
+	private static final int FIFTEENTH_DAY_OF_MONTH = 15;
+	private static final int EIGHTEENTH_DAY_OF_MONTH = 18;
 	private LocalDateTime currentDate;
 	private Calendar calendar;
 	
@@ -27,6 +28,12 @@ public class DateTimeTwo extends MesoDateTimeOneAbstract {
 	
 	public void daysOfAnyMonth(int month, int year) {
 		// TODO:Implement Method
+		LocalDate fifteenthDate = LocalDate.of(year, month, FIFTEENTH_DAY_OF_MONTH);
+		int lastDay = fifteenthDate.lengthOfMonth();
+		LocalDate lastDate = LocalDate.of(year, month, lastDay);
+		
+		System.out.println("For the year (" + year + ") and month (" + month + "), the fifteenth day is "
+				+ fifteenthDate.getDayOfWeek() + " and the last day is " + lastDate.getDayOfWeek());
 	}
 	
 	public void compareYear() {
