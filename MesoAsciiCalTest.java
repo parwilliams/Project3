@@ -3,15 +3,13 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class MesoAsciiCalTest {
-
+	private MesoStation station = new MesoStation("OKCE");
+	private MesoAsciiCal mac = new MesoAsciiCal(station);
 	@Test
 	public void testCalAverage() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testMesoAsciiCal() {
-		fail("Not yet implemented");
+		int expected = 76;
+		int actual = mac.calAverage();
+		assertEquals(expected, actual);
 	}
 
 }
