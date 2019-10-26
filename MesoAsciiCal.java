@@ -5,7 +5,6 @@ public class MesoAsciiCal extends MesoAsciiAbstract {
 	private int fixedAverage = 79; //Set for Station "NRMN"
 
 	public MesoAsciiCal(MesoStation station) {
-		// TODO:Implement Constructor
 		stationID = station.getStID();
 	}
 
@@ -44,7 +43,7 @@ public class MesoAsciiCal extends MesoAsciiAbstract {
 		floor = (int) Math.floor(finalAverage);
 		
 		//Test to round
-		if ((sumOfCharacters % 4) >= 2) {
+		if ((sumOfCharacters % 4) >= 1) {
 			roundedFinalAverage = ceiling;
 		} else
 			roundedFinalAverage = floor;
