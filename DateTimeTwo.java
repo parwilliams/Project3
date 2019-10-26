@@ -6,6 +6,7 @@ import java.time.Period;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Map;
 
 public class DateTimeTwo extends MesoDateTimeOneAbstract {
 	private static final int TENTH_DAY_OF_MONTH = 10;
@@ -70,7 +71,9 @@ public class DateTimeTwo extends MesoDateTimeOneAbstract {
 	}
 	
 	public void dateHashMap() {
-		// TODO:Implement Method
+		for(Map.Entry<LocalDate, Integer> entry: fileDates.entrySet()) {
+			System.out.println(entry.getKey() + ":" + entry.getValue());
+		}
 	}
 
 	public void dateHashMapSorted() {
