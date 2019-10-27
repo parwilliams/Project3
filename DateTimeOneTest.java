@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -35,7 +36,11 @@ public class DateTimeOneTest {
 	
 	@Test
 	public void testDateTimeNow() {
-		fail("Not yet implemented");
+		DateTimeOne date = new DateTimeOne();
+		Calendar calendar = new GregorianCalendar();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm a");
+		
+		date.dateTimeNow();
 	}
 	
 	@Test
