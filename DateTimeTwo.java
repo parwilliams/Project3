@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.Map.Entry;
 
-public class DateTimeTwo extends MesoDateTimeOneAbstract {
+public class DateTimeTwo {
 	private static final int TENTH_DAY_OF_MONTH = 10;
 	private static final int FIFTEENTH_DAY_OF_MONTH = 15;
 	private static final int EIGHTEENTH_DAY_OF_MONTH = 18;
@@ -85,42 +85,6 @@ public class DateTimeTwo extends MesoDateTimeOneAbstract {
 			System.out.println(entry.getKey() + ":" + entry.getValue());
 		}
 	}
-
-	@Override
-	public int getValueOfSecond() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void dateTimeNow() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void sleepForFiveSec() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void dateTimeOfOtherCity() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void dateTimeDifferentZone() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void timeZoneHashMap() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	private void findDifferenceInTime(LocalDate fileDate, LocalDate dateToday) {
 		Period periodDifference;
@@ -133,18 +97,5 @@ public class DateTimeTwo extends MesoDateTimeOneAbstract {
 		System.out.println(periodDifference.getYears() + " years, " + periodDifference.getMonths() + " months, and " + periodDifference.getDays() + " days.");
 	}
 	
-	public int findYearsBetweenDates(LocalDate dateA, LocalDate dateB) {
-		boolean compareDates = dateA.isAfter(dateB);
-		if(compareDates == true) {
-		}
-		return 0;
-	}
 	
-	public int findMonthsBetweenDates(LocalDate dateA, LocalDate dateB, int yearsDifference) {
-		return 0;
-	}
-	
-	public int findDaysBetweenDates(LocalDate dateA, LocalDate dateB, int yearsDifference, int monthsDifference) {
-		return 0;
-	}
 }
